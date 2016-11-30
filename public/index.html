@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Quoridor</title>
+        <link rel="stylesheet" href="./styles.css">
+        <script src="./js/jquery-3.1.1.js"></script>
+        <script src="./js/jquery-ui.js"></script>
+        <script src="./socket.io/socket.io.js"></script>
+        <script src="./js/angular.js"></script>
+        <script src="./js/angular-ui-router.js"></script>
+        <script src="./js/main_app.js"></script>
+        <script src="./js/config.js"></script>
+        <script src="./js/controllers/global_ctrl.js"></script>
+        <script src="./js/controllers/login_ctrl.js"></script>
+        <script src="./js/controllers/game_ctrl.js"></script>
+        <script src="./js/controllers/signup_ctrl.js"></script>
+        <script src="./js/factories/user_fac.js"></script>
+    </head>
+    <body ng-app="board_game" ng-controller="GlobalController as global">
+        <div ui-view=""></div>
+    </body>
+</html>

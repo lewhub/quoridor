@@ -1,0 +1,64 @@
+<!-- create the game board -->
+<!-- create both pawns and place on board -->
+<!-- highlight squares where it is valid to move to. -->
+<!-- allow pawns to be dragged. -->
+<style>
+    #logout-tag {
+        -webkit-appearance: none;
+        font-size: 25px;
+        background-color: white;
+    }
+    #logout-tag:focus {
+        outline-style: none;
+    }
+</style>
+<div id="winner-screen">
+    <div id="close-btn-div">
+        <input id="close-win-screen" type="button" value="X" class="b-btn">
+    </div>
+    <div id="win-h1-div">
+        <h2 id="win-text-player">Player One Wins!!</h2>
+    </div>
+    <div id="win-reset-btn-div">
+        <input id="win-reset-btn" type="button" value="Play Again?" class="b-btn">
+    </div>
+</div>
+<div id="instruction-screen">
+    <div id="close-btn-div-intro">
+        <input id="close-intro-screen" type="button" value="X" class="b-btn">
+    </div>
+    <div id="intro-div">
+        <h2><u>Quoridor</u></h2>
+    </div>
+    <div id="intro-p">
+        <p>
+            1. Players can only move their pawn one square at a time.<br><br>
+            2. Players have two choices when it's their turn: either move their pawn or place a barrier on the board to make it difficult for their opponent/opponents to reach their destination.<br><br>
+            3. For a two person game, each player has access to 10 barriers (walls). In a four player game, each player has access to 5 walls each.<br><br>
+            4. When placing a barrier, a player must always leave a way to reach the end of the board for their opponents. Thus, one cannot box in another player on their first three moves.<br><br>
+            5. Walls can be placed directly between two spaces in any grove, not already occupied by a wall. Walls can be placed either vertically or horizontally, <br>however a wall may not be placed where it cuts off the only remaining path of any pawn to the side of the board it must reach to win the game.<br><br>
+            6. Pawns can be moved to an adjacent space (not diagonally), or, if adjacent to another pawn, a player may jump over that pawn. (version 1.1 --> A player may move diagonally  if jumping over another pawn will result in running into a wall.) Players may not jump over walls.<br><br>
+            7. Walls can be dropped by selecting which direction, i.e., horizontal or vertical and hovering over a square and clicking that square.<br><br>
+            8. Pawns can be moved by dragging your pawn to the desired position.<br><br>
+            9. Vertical walls cover two spaces and take up the right side of the square selected and the right side of the sqaure above the square selected.<br><br>
+            10. Horizontal walls cover two spaces and take up the top side of the square selected and the top side of the square to the right of the square selected.<br><br>
+            Have Fun!
+        </p>
+    </div>
+</div>
+<div id="game-details">
+    <input ng-click="global.logout()" id="logout-tag" type="button" value="Logout">
+    <br>
+    <span id="current-player-info">Current Player: <span id="player-turn-span">White Pawn</span></span>
+    <br>
+    <br>
+    <span id="barriers-left-info">Barriers Left: <span id="b-count-span">10</span></span>
+    <div id="b-btn-div">
+        <input class="b-btn" id="intro-in-btn" type="button" value="How to Play">
+        <input class="b-btn" id="reset-btn" type="button" value="Reset Game">
+        <input class="b-btn" id="place-wall" type="button" value="Place Horizontal Barrier">
+        <input class="b-btn" id="place-v-wall" type="button" value="Place Vertical Barrier">
+        <input class="b-btn" id="cancel-wall-btn" type="button" value="Cancel">
+    </div>
+</div>
+<div id="game-board"></div>

@@ -1,0 +1,39 @@
+<style>
+    #c-box {
+        text-align: center
+    }
+    #e-tag {
+        font-size: 25px;
+    }
+    #p-tag {
+        font-size: 25px;
+    }
+    #b-tag {
+        -webkit-appearance: none;
+        font-size: 30px;
+        background-color: white;
+        margin-left: 10px;
+    }
+    #b-tag:focus {
+        outline-style: none;
+    }
+</style>
+<div id="c-box">
+    <h1>Please Login</h1>
+    <hr>
+    <br>
+    <div>
+        <div>
+            <input ng-model="login_ctrl.user.email" id="e-tag" type="email" placeholder="Email:">
+        </div>
+        <br>
+        <div>
+            <input ng-model="login_ctrl.user.password" id="p-tag" type="password" placeholder="Password:">
+        </div>
+        <br>
+        <div>
+            <input ng-click="login_ctrl.login()" id="b-tag" type="button" value="Login">
+            <input type="button" value="Signup" id="b-tag" ui-sref="create-account">
+        </div>
+    </div>
+</div>
