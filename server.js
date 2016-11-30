@@ -7,11 +7,20 @@ var io = require("socket.io")(http);
 var dotenv = require("dotenv").config( { silent: true } );
 var user_rts = require( "./routes/user_rts.js" );
 var mongoose = require("mongoose");
+var port = process.env.PORT || 3000;
 
-mongoose.connect( "mongodb://localhost/board_game", function(err) {
+
+// for local testing
+// mongoose.connect( "mongodb://localhost/board_game", function(err) {
+//     if (err) return console.log(err)
+//     console.log("connected to mongodb locally.");
+// })
+
+mongoose.connect(process.env.MLAB_URI, function(err){
     if (err) return console.log(err)
-    console.log("connected to mongodb locally.");
+    console.log("connected to mongo lab db.");
 })
+
 
 app.use(body_parser.urlencoded( { extended: false } ));
 app.use(body_parser.json());
@@ -111,7 +120,7 @@ io.on("connection", function(socket){
 //     })
 // })
 
-http.listen(3000, function(err) {
+http.listen(port, function(err) {
     if (err) return console.log(err)
-    console.log("listening on port 3000.");
+    console.log("listening on port: " + port);
 })
