@@ -15,7 +15,10 @@
             //     socket.close();
             // })
            
+
+
             socket.on("user connected", function(){
+                console.log("a user just connected.")
                 var local_id = $window.localStorage["current-user-id"];
                 user_fac
                     .show(local_id)
@@ -23,6 +26,7 @@
             })
 
             socket.on("both players connected", function(players) {
+                console.log("both players connected")
                 // console.log(players)
                 vm.player_one = players[0];
                 vm.player_two = players[1];
@@ -37,6 +41,11 @@
                     document.getElementById("place-v-wall").disabled = true;
                 }
                 }
+            })
+
+            socket.on("player disconnected", function(){
+                vm.player_one = "";
+                vm.player_two = "";
             })
 
             function user_callback(res) {
