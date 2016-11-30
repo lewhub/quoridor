@@ -85,8 +85,11 @@ io.on("connection", function(socket){
    
 
     socket.on("disconnect", function(){
-        console.log("a user disconnected...");
+        // console.log("a user disconnected...");
+        console.log(players, "<<< user disconnected")
+        players = [];
         io.emit("player disconnected")
+
     })
 
     socket.on("player one turn over", function(){
