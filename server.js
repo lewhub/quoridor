@@ -42,7 +42,9 @@ app.post("/host-found/:id", function(req, res) {
             if (err) return console.log(err)
             console.log(user._id, "host found route");
             var lobby = io.of("/" + user._id);
+
             lobby.on("connection", function(socket) {
+                 console.log(lobby, "this is lobby")
                 console.log("user connected to lobby.")
                 lobby.emit("player joined lobby");
                 
@@ -67,9 +69,10 @@ app.post("/host-found/:id", function(req, res) {
 
                 socket.on("disconnect", function(){
                     console.log("one user has disconnected! <><>>><><>><>");
+                   
                     players = [];
                     socket.disconnect()
-                    lobby.disconnect();
+                    
                 })
 
                 socket.on("zero out players", function() {
@@ -77,7 +80,7 @@ app.post("/host-found/:id", function(req, res) {
                     players = [];
                     console.log("players arr after reset", players);
                     lobby.emit("zero out players");
-                    lobby.disconnect();
+                    socket.disconnect()
                 })
 
                 socket.on("player one turn over", function(){
