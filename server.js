@@ -65,6 +65,11 @@ app.post("/host-found/:id", function(req, res) {
                     
                 })
 
+                socket.on("disconnect", function(){
+                    console.log("one user has disconnected! <><>>><><>><>");
+                    players = [];
+                })
+
                 socket.on("zero out players", function() {
                     console.log("players arr before reset", players);
                     players = [];
