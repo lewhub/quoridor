@@ -11,13 +11,28 @@
             // var api_login = "/users/login/";
             var service = {
                 index: index,
+                host_index: host_index,
+                connect_server: connect_server,
                 show: show,
                 login: login,
                 create: create,
                 delete_user: delete_user,
-                change_status: change_status
+                change_status: change_status,
+                update_host: update_host
             }
             return service;
+
+            function connect_server(id){
+                return $http.post("https://quoridor-game.herokuapp.com/host-found/" + id);
+            }
+
+            function host_index() {
+                return $http.get(api + "hosting");
+            }
+
+            function update_host(id) {
+                return $http.post(api + id);
+            }
 
             function index() {
                 return $http.get(api);

@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+<style>
+    .a-tag-text {
+        font-size: 22px;
+    }
+    #logout-tag {
+        -webkit-appearance: none;
+        font-size: 25px;
+        background-color: white;
+        margin-top: 5px;
+    }
+    #logout-tag:focus {
+        outline-style: none;
+    }
+</style>
+<div class="container">
+    <input ng-click="global.logout()" id="logout-tag" type="button" value="Logout">
+    <h2> Join someone's lobby or host your own lobby </h2>
+    <div>
+        <a ng-click="lobby_ctrl.host_lobby()" class="waves-effect waves-light btn">Host your own game</a>
+    </div>
+    <div class="collection">
+        <a class="collection-item a-tag-text" ng-repeat="user in lobby_ctrl.users" ng-click="lobby_ctrl.join_lobby($event, user)">
+            {{ user.email }}
+        </a>
+    </div>
+</div>

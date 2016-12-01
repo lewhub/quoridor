@@ -30,7 +30,7 @@
                     controller: "LoginController as login_ctrl"
                 })
                 .state("start-game", {
-                    url: "/game",
+                    url: "/game/:host_id/",
                     templateUrl: "partials/game.html",
                     controller: "GameController as game_ctrl"
                 })
@@ -38,6 +38,11 @@
                     url: "/signup",
                     templateUrl: "partials/signup.html",
                     controller: "SignupController as signup_ctrl"
+                })
+                .state("join-lobby", {
+                    url: "/lobby",
+                    templateUrl: "partials/lobby.html",
+                    controller: "LobbyCtrl as lobby_ctrl"
                 })
 
         })

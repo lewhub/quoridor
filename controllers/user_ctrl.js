@@ -10,6 +10,14 @@ module.exports = {
                 res.json( { success: true, message: "users found.", users: users } );
             })
     },
+    host_index: function( req, res ) {
+        User
+            .find( { hosting_lobby: true } )
+            .exec( function(err, users) {
+                if (err) return console.log(err)
+                res.json( { success: true, message: "users who are hosting games found.", users: users } )
+            })
+    },
     show: function( req, res ) {
         User
             .findOne( { _id: req.params.id } )
@@ -73,6 +81,19 @@ module.exports = {
                 user.save( function( err, user ) {
                     if (err) return console.log(err)
                     res.json( { success: true, message: "online status changed.", user: user } );
+                })
+            })
+    },
+    update_host: function( req, res ) {
+        User
+            .findOne( { _id: req.params.id } )
+            .exec( function(err, user) {
+                if (err) return console.log(err)
+                user.hosting_lobby = !user.hosting_lobby;
+
+                user.save( function(err, user) {
+                    if (err) return console.log(err)
+                    res.json({success: true, message: "host updated.", user: user})
                 })
             })
     }

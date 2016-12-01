@@ -22,7 +22,7 @@
 
             function user_found(res) {
                 console.log(res.data)
-                $state.go("start-game");
+                $state.go("join-lobby");
             }
             function err_callback(res) {
                 console.log("error.");

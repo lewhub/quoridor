@@ -3,15 +3,36 @@
     angular.module("board_game")
         .controller( "GameController", GameController )
 
-        GameController.$inject = ["user_fac", "$window"];
+        GameController.$inject = ["user_fac", "$window", "$stateParams", "$state"];
 
-        function GameController(user_fac, $window) {
+        function GameController(user_fac, $window, $stateParams, $state) {
+            
             var vm = this;
             vm.title = "game view."
+            console.log($stateParams.host_id, "<<<< state params")
+
+            vm.host_id = $stateParams.host_id;
             // create socket connection for changing turns and playing with someone on a different computer with socket.io.
             // complete sockets. todo: fix double pawn when dropped.
-            var socket = io();
+
+            // var main_socket = io();
+
+            // main_socket.on("user connected", function(){
+
+            // })
+
+            var socket = io("/" + vm.host_id);
+            console.log(socket, "<<<<< socket for current lobby.")
             
+            socket.on("player joined lobby", function(){
+                console.log("a player just joined this lobby.");
+                socket.emit("user id for arr", $window.localStorage["current-user-id"])
+            })
+
+            // socket.on("start game", function(players) {
+
+            // })
+
             //  $(window).on("beforeunload", function() {
             //     socket.close();
             // })
@@ -26,33 +47,46 @@
                     .then(user_callback, err_callback);
             })
 
-            socket.on("both players connected", function(players) {
+            socket.on("start game", function(players) {
                 console.log("both players connected")
                 // console.log(players)
                 vm.player_one = players[0];
                 vm.player_two = players[1];
+                // if (vm.player_one === $window.localStorage["current-user-id"]) {
+                //     socket.emit("user found with id", $window.localStorage["current-user-id"]);
+                // }
+                
                 console.log(vm.player_one, vm.player_two)
-                if (vm.player_one === $window.localStorage["user-email"]) {
+                if (vm.player_one === $window.localStorage["current-user-id"]) {
                     highlight_sq("#white-pawn");
                     $("#black-pawn").draggable("disable");
-                } else if (vm.player_two === $window.localStorage["user-email"]) {
+                } else if (vm.player_two === $window.localStorage["current-user-id"]) {
                     $("#white-pawn").draggable("disable");
-                     if (vm.player_two === $window.localStorage["user-email"]) {
+                     if (vm.player_two === $window.localStorage["current-user-id"]) {
                     document.getElementById("place-wall").disabled = true;
                     document.getElementById("place-v-wall").disabled = true;
                 }
                 }
             })
 
+            // socket.on("id to connect to", function(id) {
+            //     console.log("both players are connecting to this namespance", id)
+            //     // socket = io("/" + id);
+            //     //      console.log("socket >>>>", socket)
+            // })
+
+            
+
             socket.on("player disconnected", function(){
-                vm.player_one = "";
-                vm.player_two = "";
+                // vm.player_one = "";
+                // vm.player_two = "";
             })
 
             function user_callback(res) {
                 // console.log(res.data.user);
-                var user_info = res.data.user;
-                socket.emit("user found", user_info.email);
+                // var user_info = res.data.user;
+                // socket.emit("user found", user_info.email);
+          
             }
 
             function err_callback(res) {
@@ -108,7 +142,8 @@
             reset_btn.on("click", function(){
                 var reset = confirm("Are you sure you want to start over?");
                 if (reset) {
-                    window.location.reload();
+                    // window.location.reload();
+                    $state.go("join-lobby");
                 }
                 
 
@@ -116,7 +151,8 @@
             })
 
             win_reset_btn.on("click", function(){
-                window.location.reload();
+                // window.location.reload();
+                $state.go("join-lobby");
             })
 
             function check_for_winner(){
@@ -173,10 +209,10 @@
                     //     black_pawn_b_count -= 1;
                     // }
                     console.log(vm.player_one, "<<<< player one");
-                    if (vm.player_one === $window.localStorage["user-email"]) {
+                    if (vm.player_one === $window.localStorage["current-user-id"]) {
                         socket.emit("player one horizontal barrier set", { sq: sq_in, sq_sib: sq_sib_in, b_count: white_pawn_b_count });
                     }
-                    if (vm.player_two === $window.localStorage["user-email"]) {
+                    if (vm.player_two === $window.localStorage["current-user-id"]) {
                         socket.emit("player two horizontal barrier set", { sq: sq_in, sq_sib: sq_sib_in, b_count: black_pawn_b_count });
                     }
                     
@@ -197,10 +233,10 @@
                     // } else if (current_player === "2") {
                     //     black_pawn_b_count -= 1;
                     // }
-                    if (vm.player_one === $window.localStorage["user-email"]) {
+                    if (vm.player_one === $window.localStorage["current-user-id"]) {
                         socket.emit("player one vertical barrier set", { sq: sq_in, sq_top: index_top_sq, b_count: white_pawn_b_count });
                     }
-                    if (vm.player_two === $window.localStorage["user-email"]) {
+                    if (vm.player_two === $window.localStorage["current-user-id"]) {
                         socket.emit("player two vertical barrier set", { sq: sq_in, sq_top: index_top_sq, b_count: black_pawn_b_count });
                     }
 
@@ -212,79 +248,79 @@
             // sockets for barriers
 
             socket.on("player one vertical barrier set", function(data) {
-                if (vm.player_two === $window.localStorage["user-email"]) {
+                if (vm.player_two === $window.localStorage["current-user-id"]) {
                     $(square_arr[data.sq]).css( { "border-right": "8px groove #0099CC" });
                     $(square_arr[data.sq_top]).css( { "border-right": "8px groove #0099CC" });
                 }
                 white_pawn_b_count = data.b_count - 1;
                 turn_div.text("Black Pawn");
                 count_div.text(black_pawn_b_count.toString());
-                if (vm.player_two === $window.localStorage["user-email"]) {    
+                if (vm.player_two === $window.localStorage["current-user-id"]) {    
                      document.getElementById("place-wall").disabled = false;
                        document.getElementById("place-v-wall").disabled = false;
                       highlight_sq("#black-pawn");
                       check_for_winner()
                 }
-                if (vm.player_one === $window.localStorage["user-email"]) {
+                if (vm.player_one === $window.localStorage["current-user-id"]) {
                       document.getElementById("place-wall").disabled = true;
                        document.getElementById("place-v-wall").disabled = true;
                 }
             })
             socket.on("player two vertical barrier set", function(data) {
-                if (vm.player_one === $window.localStorage["user-email"]) {
+                if (vm.player_one === $window.localStorage["current-user-id"]) {
                     $(square_arr[data.sq]).css( { "border-right": "8px groove #0099CC" });
                     $(square_arr[data.sq_top]).css( { "border-right": "8px groove #0099CC" });
                 }
                 black_pawn_b_count = data.b_count - 1;
                 turn_div.text("White Pawn");
                 count_div.text(white_pawn_b_count.toString());
-                if (vm.player_one === $window.localStorage["user-email"]) {    
+                if (vm.player_one === $window.localStorage["current-user-id"]) {    
                      document.getElementById("place-wall").disabled = false;
                        document.getElementById("place-v-wall").disabled = false;
                       highlight_sq("#white-pawn");
                       check_for_winner()
                 }
-                if (vm.player_two === $window.localStorage["user-email"]) {
+                if (vm.player_two === $window.localStorage["current-user-id"]) {
                     document.getElementById("place-wall").disabled = true;
                     document.getElementById("place-v-wall").disabled = true;
                 }
             })
 
             socket.on("player one horizontal barrier set", function(data) {
-                if (vm.player_two === $window.localStorage["user-email"]) {
+                if (vm.player_two === $window.localStorage["current-user-id"]) {
                     $(square_arr[data.sq]).css({ "border-top-color": "#0099CC" })
                     $(square_arr[data.sq_sib]).css({ "border-top-color": "#0099CC" })
                 }
                 white_pawn_b_count = data.b_count - 1;
                 turn_div.text("Black Pawn");
                 count_div.text(black_pawn_b_count.toString());
-                if (vm.player_two === $window.localStorage["user-email"]) {    
+                if (vm.player_two === $window.localStorage["current-user-id"]) {    
                      document.getElementById("place-wall").disabled = false;
                        document.getElementById("place-v-wall").disabled = false;
                       highlight_sq("#black-pawn");
                       check_for_winner()
                 }
-                if (vm.player_one === $window.localStorage["user-email"]) {
+                if (vm.player_one === $window.localStorage["current-user-id"]) {
                       document.getElementById("place-wall").disabled = true;
                       document.getElementById("place-v-wall").disabled = true;
                 }
             })
             socket.on("player two horizontal barrier set", function(data) {
                 
-                if (vm.player_one === $window.localStorage["user-email"]) {
+                if (vm.player_one === $window.localStorage["current-user-id"]) {
                     $(square_arr[data.sq]).css({ "border-top-color": "#0099CC" })
                     $(square_arr[data.sq_sib]).css({ "border-top-color": "#0099CC" })
                 }
                 black_pawn_b_count = data.b_count - 1;
                 turn_div.text("White Pawn");
                 count_div.text(white_pawn_b_count.toString());
-                if (vm.player_one === $window.localStorage["user-email"]) {   
+                if (vm.player_one === $window.localStorage["current-user-id"]) {   
                      document.getElementById("place-wall").disabled = false;
                      document.getElementById("place-v-wall").disabled = false; 
                       highlight_sq("#white-pawn");
                       check_for_winner()
                 }
-                if (vm.player_two === $window.localStorage["user-email"]) {
+                if (vm.player_two === $window.localStorage["current-user-id"]) {
                     document.getElementById("place-wall").disabled = true;
                     document.getElementById("place-v-wall").disabled = true;
                 }
@@ -304,11 +340,11 @@
             // }
             
             
-            // if (vm.player_one === $window.localStorage["user-email"]) {
+            // if (vm.player_one === $window.localStorage["current-user-id"]) {
             //     $("#white-pawn").draggable("enable");
             //     $("#black-pawn").draggable("disable");
             // }
-            // if (vm.player_two === $window.localStorage["user-email"]) {
+            // if (vm.player_two === $window.localStorage["current-user-id"]) {
             //     $("#black-pawn").draggable("enable");
             //     $("#white-pawn").draggable("disable");
             // }
@@ -322,7 +358,7 @@
                     // $("#white-pawn").draggable("disable");
                     // $("#black-pawn").draggable("enable");
                     current_player = "2";
-                    // if (vm.player_two === $window.localStorage["user-email"]) {
+                    // if (vm.player_two === $window.localStorage["current-user-id"]) {
                     //     highlight_sq("#black-pawn");
                     // }
                 } else if (current_player === "2") {
@@ -332,7 +368,7 @@
                     // $("#white-pawn").draggable("enable");
                     // $("#black-pawn").draggable("disable");
                     current_player = "1";
-                    //  if (vm.player_one === $window.localStorage["user-email"]) {
+                    //  if (vm.player_one === $window.localStorage["current-user-id"]) {
                     //       highlight_sq("#white-pawn");
                     // }
                   
@@ -397,13 +433,13 @@
             socket.on("player one turn over", function(){
                 turn_div.text("Black Pawn");
                 count_div.text(black_pawn_b_count.toString());
-                if (vm.player_two === $window.localStorage["user-email"]) {
+                if (vm.player_two === $window.localStorage["current-user-id"]) {
                       document.getElementById("place-wall").disabled = false;
                        document.getElementById("place-v-wall").disabled = false;
                       highlight_sq("#black-pawn");
                       check_for_winner();
                 }
-                if (vm.player_one === $window.localStorage["user-email"]) {
+                if (vm.player_one === $window.localStorage["current-user-id"]) {
                       document.getElementById("place-wall").disabled = true;
                       document.getElementById("place-v-wall").disabled = true;
                 }
@@ -430,13 +466,13 @@
             socket.on("player two turn over", function(){
                 turn_div.text("White Pawn");
                 count_div.text(white_pawn_b_count.toString());
-                if (vm.player_one === $window.localStorage["user-email"]) {
+                if (vm.player_one === $window.localStorage["current-user-id"]) {
                      document.getElementById("place-wall").disabled = false;
                      document.getElementById("place-v-wall").disabled = false;
                       highlight_sq("#white-pawn");
                       check_for_winner()
                 }
-                if (vm.player_two === $window.localStorage["user-email"]) {
+                if (vm.player_two === $window.localStorage["current-user-id"]) {
                     document.getElementById("place-wall").disabled = true;
                     document.getElementById("place-v-wall").disabled = true;
                 }
