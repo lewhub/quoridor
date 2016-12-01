@@ -33,7 +33,7 @@ module.exports = {
         user.save( function( err, user ) {
             if (err) return console.log(err)
             var token = jwt.sign( user.toObject(), process.env.secret, {
-                expiresIn: 1500
+                expiresIn: 3600
             })
             res.json( { sucess: true, message: "user created.", token: token, user: user } );
         })
@@ -46,7 +46,7 @@ module.exports = {
                 if (!user) return res.json( { sucess: false, message: "email address not found in db."  } )
                 if ( user && !user.validPassword( req.body.password )) return res.json( { sucess: false, message: "password invalid." } )
                 var token = jwt.sign( user.toObject(), process.env.secret, {
-                    expiresIn: 1500
+                    expiresIn: 3600
                 }) 
                 res.json( { sucess: true, message: "login successful.", user: user, token: token } );
             })
