@@ -258,12 +258,14 @@
                 if (vm.player_two === $window.localStorage["current-user-id"]) {    
                      document.getElementById("place-wall").disabled = false;
                        document.getElementById("place-v-wall").disabled = false;
+                       $("#black-pawn").draggable("enable");
                       highlight_sq("#black-pawn");
                       check_for_winner()
                 }
                 if (vm.player_one === $window.localStorage["current-user-id"]) {
                       document.getElementById("place-wall").disabled = true;
                        document.getElementById("place-v-wall").disabled = true;
+                      $("#white-pawn").draggable("disable");
                 }
             })
             socket.on("player two vertical barrier set", function(data) {
@@ -277,12 +279,14 @@
                 if (vm.player_one === $window.localStorage["current-user-id"]) {    
                      document.getElementById("place-wall").disabled = false;
                        document.getElementById("place-v-wall").disabled = false;
+                       $("#white-pawn").draggable("enable");
                       highlight_sq("#white-pawn");
                       check_for_winner()
                 }
                 if (vm.player_two === $window.localStorage["current-user-id"]) {
                     document.getElementById("place-wall").disabled = true;
                     document.getElementById("place-v-wall").disabled = true;
+                    $("#black-pawn").draggable("disable");
                 }
             })
 
@@ -297,12 +301,14 @@
                 if (vm.player_two === $window.localStorage["current-user-id"]) {    
                      document.getElementById("place-wall").disabled = false;
                        document.getElementById("place-v-wall").disabled = false;
+                       $("#black-pawn").draggable("enable");
                       highlight_sq("#black-pawn");
                       check_for_winner()
                 }
                 if (vm.player_one === $window.localStorage["current-user-id"]) {
                       document.getElementById("place-wall").disabled = true;
                       document.getElementById("place-v-wall").disabled = true;
+                      $("#white-pawn").draggable("disable");
                 }
             })
             socket.on("player two horizontal barrier set", function(data) {
@@ -317,12 +323,14 @@
                 if (vm.player_one === $window.localStorage["current-user-id"]) {   
                      document.getElementById("place-wall").disabled = false;
                      document.getElementById("place-v-wall").disabled = false; 
+                     $("#white-pawn").draggable("enable");
                       highlight_sq("#white-pawn");
                       check_for_winner()
                 }
                 if (vm.player_two === $window.localStorage["current-user-id"]) {
                     document.getElementById("place-wall").disabled = true;
                     document.getElementById("place-v-wall").disabled = true;
+                    $("#black-pawn").draggable("disable");
                 }
             })
 
@@ -436,12 +444,14 @@
                 if (vm.player_two === $window.localStorage["current-user-id"]) {
                       document.getElementById("place-wall").disabled = false;
                        document.getElementById("place-v-wall").disabled = false;
+                       $("#black-pawn").draggable("enable");
                       highlight_sq("#black-pawn");
                       check_for_winner();
                 }
                 if (vm.player_one === $window.localStorage["current-user-id"]) {
                       document.getElementById("place-wall").disabled = true;
                       document.getElementById("place-v-wall").disabled = true;
+                      $("#white-pawn").draggable("disable");
                 }
                
                
@@ -469,12 +479,14 @@
                 if (vm.player_one === $window.localStorage["current-user-id"]) {
                      document.getElementById("place-wall").disabled = false;
                      document.getElementById("place-v-wall").disabled = false;
+                     $("#white-pawn").draggable("enable");
                       highlight_sq("#white-pawn");
                       check_for_winner()
                 }
                 if (vm.player_two === $window.localStorage["current-user-id"]) {
                     document.getElementById("place-wall").disabled = true;
                     document.getElementById("place-v-wall").disabled = true;
+                    $("#black-pawn").draggable("disable");
                 }
             })
 
