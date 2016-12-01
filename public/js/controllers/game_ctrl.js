@@ -72,6 +72,7 @@
             socket.on("zero out players", function(){
                 vm.player_one = "";
                 vm.player_two = "";
+                socket.disconnect();
                 $state.go("join-lobby");
             })
 
@@ -149,6 +150,7 @@
                 var reset = confirm("Are you sure you want to start over?");
                 if (reset) {
                     // window.location.reload();
+                    socket.disconnect();
                     socket.emit("zero out players")
                     
                 }
@@ -159,6 +161,7 @@
 
             win_reset_btn.on("click", function(){
                 // window.location.reload();
+                socket.disconnect();
                 socket.emit("zero out players")
                
             })
