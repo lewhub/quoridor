@@ -81,6 +81,7 @@
             socket.on("zero out players", function(){
                 vm.player_one = "";
                 vm.player_two = "";
+                window.location.reload();
                 socket.disconnect();
              
             })
@@ -158,10 +159,11 @@
             reset_btn.on("click", function(){
                 var reset = confirm("Are you sure you want to start over?");
                 if (reset) {
-                    window.location.reload();
+
+                   
                     // $state.go("join-lobby");
-                    socket.disconnect();
-                    // socket.emit("zero out players")
+                    // socket.disconnect();
+                    socket.emit("zero out players")
                     
                 }
                 
@@ -171,8 +173,8 @@
 
             win_reset_btn.on("click", function(){
                 window.location.reload();
-                socket.disconnect();
-                // socket.emit("zero out players")
+                // socket.disconnect();
+                socket.emit("zero out players")
                
             })
 
