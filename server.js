@@ -69,7 +69,7 @@ app.post("/host-found/:id", function(req, res) {
                     console.log("one user has disconnected! <><>>><><>><>");
                     players = [];
                     socket.disconnect()
-                    lobby.close();
+                    lobby.disconnect();
                 })
 
                 socket.on("zero out players", function() {
@@ -77,7 +77,7 @@ app.post("/host-found/:id", function(req, res) {
                     players = [];
                     console.log("players arr after reset", players);
                     lobby.emit("zero out players");
-                    lobby.close();
+                    lobby.disconnect();
                 })
 
                 socket.on("player one turn over", function(){
