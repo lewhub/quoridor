@@ -43,8 +43,14 @@ app.post("/host-found/:id", function(req, res) {
             console.log(user._id, "host found route");
             var lobby = io.of("/" + user._id);
 
+           
+
             lobby.on("connection", function(socket) {
-                 console.log(lobby, "this is lobby")
+                 lobby.clients(function(err, clients){
+                if (err) return console.log(err)
+                console.log(clients, "all clients")
+            })
+                //  console.log(lobby, "this is lobby")
                 console.log("user connected to lobby.")
                 lobby.emit("player joined lobby");
                 
