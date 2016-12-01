@@ -65,6 +65,13 @@ app.post("/host-found/:id", function(req, res) {
                     
                 })
 
+                socket.on("zero out players", function() {
+                    console.log("players arr before reset", players);
+                    players = [];
+                    console.log("players arr after reset", players);
+                    lobby.emit("zero out players");
+                })
+
                 socket.on("player one turn over", function(){
                     lobby.emit("player one turn over")
                 })

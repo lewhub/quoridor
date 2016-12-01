@@ -69,6 +69,12 @@
                 }
             })
 
+            socket.on("zero out players", function(){
+                vm.player_one = "";
+                vm.player_two = "";
+                $state.go("join-lobby");
+            })
+
             // socket.on("id to connect to", function(id) {
             //     console.log("both players are connecting to this namespance", id)
             //     // socket = io("/" + id);
@@ -143,7 +149,8 @@
                 var reset = confirm("Are you sure you want to start over?");
                 if (reset) {
                     // window.location.reload();
-                    $state.go("join-lobby");
+                    socket.emit("zero out players")
+                    
                 }
                 
 
@@ -152,7 +159,8 @@
 
             win_reset_btn.on("click", function(){
                 // window.location.reload();
-                $state.go("join-lobby");
+                socket.emit("zero out players")
+               
             })
 
             function check_for_winner(){
