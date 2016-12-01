@@ -82,7 +82,7 @@
                 vm.player_one = "";
                 vm.player_two = "";
                 socket.disconnect();
-                $state.go("join-lobby");
+             
             })
 
             // socket.on("id to connect to", function(id) {
@@ -158,9 +158,10 @@
             reset_btn.on("click", function(){
                 var reset = confirm("Are you sure you want to start over?");
                 if (reset) {
-                    // window.location.reload();
+                    window.location.reload();
+                    // $state.go("join-lobby");
                     socket.disconnect();
-                    socket.emit("zero out players")
+                    // socket.emit("zero out players")
                     
                 }
                 
@@ -169,9 +170,9 @@
             })
 
             win_reset_btn.on("click", function(){
-                // window.location.reload();
+                window.location.reload();
                 socket.disconnect();
-                socket.emit("zero out players")
+                // socket.emit("zero out players")
                
             })
 
