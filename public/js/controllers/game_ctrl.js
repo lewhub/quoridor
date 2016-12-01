@@ -1,4 +1,5 @@
 ( function(){
+    // todo --> write one player function
     angular.module("board_game")
         .controller( "GameController", GameController )
 
@@ -381,6 +382,12 @@
                 console.log("white pawn was dropped and emitted")
                 // var w_p = "<img id='white-pawn' src='./assets/white_pawn.png'>";
                 $(square_arr[index]).append($("#white-pawn"));
+                // $("#white-pawn").css({
+                //     "top": "initial !important",
+                //     "left": "initial !important"
+                // })
+                document.getElementById("white-pawn").style.top = "inherit";
+                document.getElementById("white-pawn").style.left = "inherit";
                 socket.emit("player one turn over")
                 // change_turns();
                 
@@ -406,7 +413,16 @@
             socket.on("black pawn dropped", function(index){
                 //  var b_p = "<img id='black-pawn' src='./assets/black_pawn.png'>";
                 $(square_arr[index]).append($("#black-pawn"));
+                console.log($("#black-pawn").css("top"))
+                // $("#black-pawn").css({
+                //     "top": "initial !important",
+                //     "left": "initial !important"
+                // })
+                document.getElementById("black-pawn").style.top = "inherit";
+                document.getElementById("black-pawn").style.left = "inherit";
+                console.log($("#black-pawn").css("top"))
                 socket.emit("player two turn over");
+
                 // change_turns()
                 //  highlight_sq("#black-pawn")
             })
@@ -1605,6 +1621,10 @@
 
                 $(square_arr[4]).append(b_p);
                 $(square_arr[76]).append(w_p);
+                document.getElementById("black-pawn").style.top = "inherit";
+                document.getElementById("black-pawn").style.left = "inherit";
+                document.getElementById("white-pawn").style.top = "inherit";
+                document.getElementById("white-pawn").style.left = "inherit";
             }
 
 

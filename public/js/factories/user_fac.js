@@ -7,6 +7,8 @@
         function user_fac($http) {
             var api = "https://quoridor-game.herokuapp.com/users/";
             var api_login = "https://quoridor-game.herokuapp.com/users/login/";
+            // var api = "/users/";
+            // var api_login = "/users/login/";
             var service = {
                 index: index,
                 show: show,
