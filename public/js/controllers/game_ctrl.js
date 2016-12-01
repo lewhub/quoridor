@@ -50,8 +50,17 @@
             socket.on("start game", function(players) {
                 console.log("both players connected")
                 // console.log(players)
-                vm.player_one = players[0];
-                vm.player_two = players[1];
+                if (vm.host_id === players[0]) {
+                    vm.player_one = players[0];
+                    vm.player_two = players[1];
+                }
+                else if (vm.host_id === players[1]) {
+                    vm.player_one = players[1];
+                    vm.player_two = players[0];
+                }
+
+     
+                
                 // if (vm.player_one === $window.localStorage["current-user-id"]) {
                 //     socket.emit("user found with id", $window.localStorage["current-user-id"]);
                 // }
