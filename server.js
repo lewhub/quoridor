@@ -53,12 +53,12 @@ app.post("/host-found/:id", function(req, res) {
                         
                           if (players.length !== 2) {
                             players.push(id)
-                            
-                        }
-                        if (players.length === 2) {
+                            if (players.length === 2) {
                                 console.log(players, "game is ready to begin.");
                                 lobby.emit("start game", players);
                             } 
+                        }
+                        
                         
                     }
                     
