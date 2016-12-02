@@ -179,7 +179,7 @@
             })
 
             function check_for_winner(){
-                console.log("checking for winner...");
+                // console.log("checking for winner...");
                 var w_p_sq = document.querySelector("#white-pawn").parentElement;
                 var b_p_sq = document.querySelector("#black-pawn").parentElement;
                 var i_b = square_arr.indexOf(b_p_sq);
@@ -482,14 +482,14 @@
             socket.on("black pawn dropped", function(index){
                 //  var b_p = "<img id='black-pawn' src='./assets/black_pawn.png'>";
                 $(square_arr[index]).append($("#black-pawn"));
-                console.log($("#black-pawn").css("top"))
+                // console.log($("#black-pawn").css("top"))
                 // $("#black-pawn").css({
                 //     "top": "initial !important",
                 //     "left": "initial !important"
                 // })
                 document.getElementById("black-pawn").style.top = "inherit";
                 document.getElementById("black-pawn").style.left = "inherit";
-                console.log($("#black-pawn").css("top"))
+                // console.log($("#black-pawn").css("top"))
                 socket.emit("player two turn over");
 
                 // change_turns()
