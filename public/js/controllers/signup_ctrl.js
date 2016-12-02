@@ -16,7 +16,7 @@
 
             function account_created(res) {
                 console.log(res.data);
-                $state.go("start-game");
+                $state.go("login");
             }
             function err_callback(res) {
                 console.log("error.");
