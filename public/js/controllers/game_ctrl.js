@@ -184,7 +184,7 @@
                 var b_p_sq = document.querySelector("#black-pawn").parentElement;
                 var i_b = square_arr.indexOf(b_p_sq);
                 var i_w = square_arr.indexOf(w_p_sq);
-                console.log(i_b, i_w)
+                // console.log(i_b, i_w)
                 if (i_b === 72 || i_b === 73 || i_b === 74 || i_b === 75 || i_b === 76 || i_b === 77 || i_b === 78 || i_b === 79 || i_b === 80) {
                     // alert("black pawn made it to the other side of the board. Player Two Wins!!!");
                     winner_text.text("Player Two (Black Pawn) Wins!!");
@@ -383,7 +383,7 @@
             function change_turns() {
                 if (!check_for_winner()) {
                     if (current_player === "1") {
-                    console.log("black pawn\'s turn...");
+                    // console.log("black pawn\'s turn...");
                     // turn_div.text("Black Pawn");
                     // count_div.text(black_pawn_b_count.toString());
                     // $("#white-pawn").draggable("disable");
@@ -393,7 +393,7 @@
                     //     highlight_sq("#black-pawn");
                     // }
                 } else if (current_player === "2") {
-                    console.log("white pawn\'s turn....");
+                    // console.log("white pawn\'s turn....");
                     // turn_div.text("White Pawn");
                     // count_div.text(white_pawn_b_count.toString());
                     // $("#white-pawn").draggable("enable");
@@ -801,8 +801,8 @@
                 var pos_obj = valid_squares(pawn);
                 var h = "highlight";
                 var ui_color = "ui-box-color";
-                console.log("current pos", pos)
-                console.log("valid positions to move", pos_obj)
+                // console.log("current pos", pos)
+                // console.log("valid positions to move", pos_obj)
                 var top = $(square_arr[pos_obj.top.pos]);
                 // todo - range check on hop over squares
                 var new_top = $(square_arr[pos_obj.top.pos + 9]);
@@ -855,7 +855,7 @@
                                 var index = square_arr.indexOf(evt.target)
                                 var sq = square_arr[index];
                                 sq.append(ui.draggable[0])
-                                console.log(sq)
+                                // console.log(sq)
                                 emit_drop(index, pawn)
                                 disable_sq(bottom, left, right, pos, sq);
                                 // highlight_sq("#black-pawn")
@@ -879,7 +879,7 @@
                                 var index = square_arr.indexOf(evt.target)
                                 var sq = square_arr[index];
                                 sq.append(ui.draggable[0])
-                                console.log(sq)
+                                // console.log(sq)
                                 emit_drop(index, pawn)
                                 disable_sq(top, left, right, pos, sq);
                                 //  highlight_sq("#white-pawn")
@@ -899,7 +899,7 @@
                                 var index = square_arr.indexOf(evt.target)
                                 var sq = square_arr[index];
                                 sq.append(ui.draggable[0])
-                                console.log(sq)
+                                // console.log(sq)
                                 emit_drop(index, pawn)
                                 disable_sq(top, left, right, pos, sq);
                                 //  highlight_sq("#black-pawn")
@@ -923,7 +923,7 @@
                                 var index = square_arr.indexOf(evt.target)
                                 var sq = square_arr[index];
                                 sq.append(ui.draggable[0])
-                                console.log(sq)
+                                // console.log(sq)
                                 emit_drop(index, pawn)
                                 disable_sq(bottom, left, top, pos, sq);
                                 // highlight_sq("#white-pawn")
@@ -943,7 +943,7 @@
                                 var index = square_arr.indexOf(evt.target)
                                 var sq = square_arr[index];
                                 sq.append(ui.draggable[0])
-                                console.log(sq)
+                                // console.log(sq)
                                 emit_drop(index, pawn)
                                 disable_sq(bottom, left, top, pos, sq);
                                 //  highlight_sq("#black-pawn")
@@ -967,7 +967,7 @@
                                 var index = square_arr.indexOf(evt.target)
                                 var sq = square_arr[index];
                                 sq.append(ui.draggable[0])
-                                console.log(sq)
+                                // console.log(sq)
                                 emit_drop(index, pawn)
                                 disable_sq(bottom, top, right, pos, sq);
                                 //  highlight_sq("#white-pawn")
@@ -987,7 +987,7 @@
                                 var index = square_arr.indexOf(evt.target)
                                 var sq = square_arr[index];
                                 sq.append(ui.draggable[0])
-                                console.log(sq)
+                                // console.log(sq)
                                 emit_drop(index, pawn)
                             disable_sq(bottom, top, right, pos, sq);
                             // highlight_sq("#black-pawn")
@@ -1007,7 +1007,7 @@
 
 
             function check_for_jump(t, b, l, r, curr, p) {
-                console.log("checking if valid jump");
+                // console.log("checking if valid jump");
                 var j_i = curr - 18;
                 var j_i_b = curr + 18;
                 var j_left = curr - 2;
@@ -1024,7 +1024,7 @@
                 if (t.children().length > 0){
                     var id =  $(t.children()[0]).attr("id")
                     if (id === "black-pawn") {
-                        console.log(t, "sq that contains other pawn: black pawn")
+                        // console.log(t, "sq that contains other pawn: black pawn")
                         if (t.droppable("instance")) {
                             t.droppable("destroy")   
                         }
@@ -1032,7 +1032,7 @@
                             if (t.css("border-top-color") === "rgb(0, 153, 204)") {
                                 console.log("no move to make... game over...")
                             } else {
-                                console.log(jump_sq, "jump valid")
+                                // console.log(jump_sq, "jump valid")
                                 jump_sq.droppable({
                                     addClasses: true,
                                     accept: "#white-pawn",
@@ -1164,15 +1164,15 @@
                 if (l.children().length > 0) {
                     var id =  $(l.children()[0]).attr("id")
                     if (id === "black-pawn") {
-                        console.log(l, "sq that contains other pawn: black pawn")
+                        // console.log(l, "sq that contains other pawn: black pawn")
                         if (l.droppable("instance")) {
                             l.droppable("destroy")   
                         }
                         if (!t.droppable("instance") && !b.droppable("instance") && !r.droppable("instance")) {
                             if (jump_sq_left.css("border-right-color") === "rgb(0, 153, 204)") {
-                                console.log("no move to make... game over...")
+                                // console.log("no move to make... game over...")
                             } else {
-                                console.log(jump_sq_left, "jump valid")
+                                // console.log(jump_sq_left, "jump valid")
                                 jump_sq_left.droppable({
                                     addClasses: true,
                                     accept: "#white-pawn",
@@ -1185,7 +1185,7 @@
                                         var index = square_arr.indexOf(evt.target)
                                         var sq = square_arr[index];
                                         sq.append(ui.draggable[0])
-                                        console.log(sq)
+                                        // console.log(sq)
                                         emit_drop(index, pawn)
                                     disable_sq(t, r, b, curr, sq);
                                     // highlight_sq("#black-pawn")
@@ -1197,16 +1197,16 @@
                     } else if (id === "white-pawn") {
                         // finish valid jump check and move for black pawn in top pos.
                         // todo finish valid jump check for bottom, left, and right squares for white and black pawns.
-                        console.log(l, "sq that contains other pawn: white pawn");
+                        // console.log(l, "sq that contains other pawn: white pawn");
                         if (l.droppable("instance")) {
                             l.droppable("destroy")   
                         }
-                        console.log(jump_sq_left);
+                        // console.log(jump_sq_left);
                         if (!t.droppable("instance") && !b.droppable("instance") && !r.droppable("instance")) {
                             if (jump_sq_left.css("border-right-color") === "rgb(0, 153, 204)") {
                                 console.log("no move to make... game over...");
                             } else {
-                                console.log(jump_sq_left, "jump valid")
+                                // console.log(jump_sq_left, "jump valid")
                                 jump_sq_left.droppable({
                                     addClasses: true,
                                     accept: "#black-pawn",
@@ -1220,7 +1220,7 @@
                                         var sq = square_arr[index];
                                         sq.append(ui.draggable[0])
                                         emit_drop(index, pawn)
-                                        console.log(sq)
+                                        // console.log(sq)
                                     disable_sq(t, r, b, curr, sq);
                                     // highlight_sq("#black-pawn")
                                     change_turns();
@@ -1234,7 +1234,7 @@
                 if ( r.children().length > 0 ) {
                     var id =  $(r.children()[0]).attr("id")
                     if (id === "black-pawn") {
-                        console.log(r, "sq that contains other pawn: black pawn")
+                        // console.log(r, "sq that contains other pawn: black pawn")
                         if (r.droppable("instance")) {
                             r.droppable("destroy")   
                         }
@@ -1242,7 +1242,7 @@
                             if (jump_sq_r_one.css("border-right-color") === "rgb(0, 153, 204)") {
                                 console.log("no move to make... game over...")
                             } else {
-                                console.log(jump_sq_right, "jump valid")
+                                // console.log(jump_sq_right, "jump valid")
                                 jump_sq_right.droppable({
                                     addClasses: true,
                                     accept: "#white-pawn",
@@ -1304,12 +1304,12 @@
             }
 
             function check_borders(t, b, l, r, curr, p) {
-                console.log(p, "pawn <><>")
-                console.log("checking borders <><><>")
+                // console.log(p, "pawn <><>")
+                // console.log("checking borders <><><>")
                 var current = $(square_arr[curr])
 
                 if (t.length > 0) {
-                    console.log(t);
+                    // console.log(t);
                     if (current.css("border-top-color") === "rgb(0, 153, 204)" && p === "#white-pawn") {
                         t.droppable("destroy");
                     } else if (t.css("border-top-color") === "rgb(0, 153, 204)" && p === "#black-pawn") {
@@ -1318,7 +1318,7 @@
                 
                 }
                 if (b.length > 0) {
-                    console.log(b);
+                    // console.log(b);
                     if (b.css("border-top-color") === "rgb(0, 153, 204)" && p === "#white-pawn") {
                         b.droppable("destroy");
                     } else if (current.css("border-top-color") === "rgb(0, 153, 204)" && p === "#black-pawn") {
@@ -1326,19 +1326,19 @@
                     }
                 }
                 if (l.length > 0) {
-                    console.log(l);
+                    // console.log(l);
                     if (l.css("border-right-color") === "rgb(0, 153, 204)") {
                         l.droppable("destroy")
                     }
                     
                 }
                 if (r.length > 0) {
-                    console.log(r);
+                    // console.log(r);
                     if (current.css("border-right-color") === "rgb(0, 153, 204)") {
                         r.droppable("destroy")
                     }
                 }
-                console.log(current)
+                // console.log(current)
             }
 
 
@@ -1373,7 +1373,7 @@
 
                 if (pawn === "#white-pawn") {
 
-                    console.log("white pawn pos >> ", pos);
+                    // console.log("white pawn pos >> ", pos);
 
                     var w_p = new Object();
 
@@ -1406,7 +1406,7 @@
 
 
                 } else if (pawn === "#black-pawn") {
-                    console.log("black pawn pos >> ", pos);
+                    // console.log("black pawn pos >> ", pos);
 
                     var b_p = new Object();
 

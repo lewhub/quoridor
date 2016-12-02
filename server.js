@@ -48,7 +48,7 @@ app.post("/host-found/:id", function(req, res) {
             lobby.on("connection", function(socket) {
                  lobby.clients(function(err, clients){
                 if (err) return console.log(err)
-                console.log(clients, "all clients")
+                // console.log(clients, "all clients")
             })
                 //  console.log(lobby, "this is lobby")
                 console.log("user connected to lobby.")
@@ -56,7 +56,7 @@ app.post("/host-found/:id", function(req, res) {
                 
                 socket.on("user id for arr", function(id) {
               
-                console.log(players, "in lobby on arr func")
+                // console.log(players, "in lobby on arr func")
                     if (players.indexOf(id) === -1) {
                         
                           if (players.length !== 2) {
@@ -82,9 +82,9 @@ app.post("/host-found/:id", function(req, res) {
                 })
 
                 socket.on("zero out players", function() {
-                    console.log("players arr before reset", players);
+                    // console.log("players arr before reset", players);
                     players = [];
-                    console.log("players arr after reset", players);
+                    // console.log("players arr after reset", players);
                     lobby.emit("zero out players");
                     socket.disconnect()
                 })
