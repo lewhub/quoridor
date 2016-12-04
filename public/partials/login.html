@@ -64,7 +64,7 @@
                 onlogin="checkLoginState();">
             </fb:login-button>-->
             <input type="button" id="b-tag" value="Login with Facebook" ng-click="login_ctrl.fb_login_start()">
-            <input ng-show="login_ctrl.fb_logged_in()" type="button" id="b-tag" value="Logout FB" ng-click="login_ctrl.fb_logout()">
+            <input ng-show="login_ctrl.fb_logged_in($event)" type="button" id="b-tag" value="Logout FB" ng-click="login_ctrl.fb_logout()">
         </div>
     </div>
 </div>
