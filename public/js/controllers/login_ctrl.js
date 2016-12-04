@@ -45,7 +45,13 @@
                     FB.api("/" + response.authResponse.userID, { fields: "friends" }, function(response){
                         console.log(response, "friends")
                     })
-                }, { scope: "public_profile, email, user_friends", auto_logout_link: true })
+                }, { scope: "public_profile, email, user_friends" })
+            }
+
+            vm.fb_logout = function() {
+                FB.logout(function(response) {
+                    console.log(response, "logout")
+                })
             }
             
         }
