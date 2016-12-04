@@ -27,7 +27,7 @@
                 console.log($window.localStorage["current-user-id"]);
                 console.log($window.localStorage["user-email"]);
                 user_fac
-                    .update_host($window.localStorage["current-user-id"])
+                    .update_host($window.localStorage["current-user-id"], { is_hosting: true })
                     .then(host_updated, err_callback)
             }
 
@@ -54,7 +54,12 @@
                     .connect_server(u._id)
                     .then(function(res){
                         console.log(res)
-                        $state.go("start-game", { host_id: u._id })
+                        user_fac.update_host(u._id, { is_hosting: false })
+                        .then(function(res) {
+                            console.log(res.data)
+                            $state.go("start-game", { host_id: u._id })
+                        }, err_callback)
+                        
                     }, err_callback)
                 
             }

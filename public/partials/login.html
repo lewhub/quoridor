@@ -18,6 +18,28 @@
         outline-style: none;
     }
 </style>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1202135139865938',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+   function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+    });
+    }
+</script>
 <div id="c-box">
     <h1>Please Login</h1>
     <hr>
@@ -34,6 +56,10 @@
         <div>
             <input ng-click="login_ctrl.login()" id="b-tag" type="button" value="Login">
             <input type="button" value="Signup" id="b-tag" ui-sref="create-account">
+            <fb:login-button 
+                scope="public_profile,email"
+                onlogin="checkLoginState();">
+            </fb:login-button>
         </div>
     </div>
 </div>

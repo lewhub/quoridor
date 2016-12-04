@@ -30,8 +30,8 @@
                 return $http.get(api + "hosting");
             }
 
-            function update_host(id) {
-                return $http.post(api + id);
+            function update_host(id, data) {
+                return $http.post(api + id, data);
             }
 
             function index() {

@@ -22,7 +22,14 @@
 
             function user_found(res) {
                 console.log(res.data)
+                user_fac
+                    .update_host(res.data.user._id, { is_hosting: false })
+                    .then(not_hosting, err_callback)
+            }
+            function not_hosting(res) {
+                console.log(res.data)
                 $state.go("join-lobby");
+                
             }
             function err_callback(res) {
                 console.log("error.");

@@ -89,7 +89,8 @@ module.exports = {
             .findOne( { _id: req.params.id } )
             .exec( function(err, user) {
                 if (err) return console.log(err)
-                user.hosting_lobby = !user.hosting_lobby;
+                console.log(req.body)
+                user.hosting_lobby = req.body.is_hosting;
 
                 user.save( function(err, user) {
                     if (err) return console.log(err)

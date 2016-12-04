@@ -22,5 +22,12 @@
                 console.log("error.");
                 console.log(res);
             }
+
+            vm.no_new_info = function(){
+                if (!vm.user.email && !vm.user.password) {
+                    return true;
+                }
+                return false;
+            }
         }
 }())

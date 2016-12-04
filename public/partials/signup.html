@@ -18,6 +18,23 @@
         outline-style: none;
     }
 </style>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1202135139865938',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 <div id="c-box">
     <h1>Please Signup</h1>
     <hr>
@@ -33,7 +50,7 @@
         <br>
         <div>
             <input ng-click="signup_ctrl.create_account()" id="b-tag" type="button" value="Submit">
-            <input type="button" value="Login" id="b-tag" ui-sref="login">
+            <input ng-show="signup_ctrl.no_new_info()" type="button" value="Login" id="b-tag" ui-sref="login">
         </div>
     </div>
 </div>
