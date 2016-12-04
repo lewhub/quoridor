@@ -75,7 +75,8 @@
                 // for FB.getLoginStatus().
                 if (response.status === 'connected') {
                 // Logged into your app and Facebook.
-                testAPI(response.authResponse.userID);
+                return true;
+                // testAPI(response.authResponse.userID);
                 } else if (response.status === 'not_authorized') {
                 // The person is logged into Facebook, but not your app.
                 document.getElementById('status').innerHTML = 'Please log ' +
@@ -85,13 +86,19 @@
                 // they are logged into this app or not.
                 document.getElementById('status').innerHTML = 'Please log ' +
                     'into Facebook.';
+                    return false;
                 }
             }
 
   vm.fb_logged_in = function () {
-    FB.getLoginStatus(function(response) {
+    if (FB) {
+        FB.getLoginStatus(function(response) {
         vm.statusChangeCallback(response)
     })
+    } else {
+        return false
+    }
+    
    }
 
             // vm. = function() {
