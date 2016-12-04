@@ -100,6 +100,8 @@
                         console.log("showing logout button");
                         var logout_btn = angular.element(document.querySelector(".fb_logout_btn"));
                         console.log(logout_btn);
+                        logout_btn.removeClass("ng-hide")
+                        logout_btn.addClass("ng-show")
                         logout_btn.css("display", "inline-block");
                         return true;
                     } else if (response.status === "not_authorized") {
