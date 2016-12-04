@@ -42,6 +42,20 @@ function statusChangeCallback(response) {
     }
   }
 
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+        statusChangeCallback(response)
+    })
+   }
+
+   function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    })
+
 
   window.fbAsyncInit = function() {
     FB.init({
@@ -58,13 +72,9 @@ function statusChangeCallback(response) {
      js.src = "//connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
-   function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-        statusChangeCallback(response)
-        
-    });
-    }
+   
 </script>
+<div id="status"></div>
 <div id="c-box">
     <h1>Please Login</h1>
     <hr>
