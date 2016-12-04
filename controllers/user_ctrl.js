@@ -29,7 +29,7 @@ module.exports = {
     show_with_email: function(req, res) {
         User
             .findOne( { email: req.body.email })
-            .then(function(err, user) {
+            .exec(function(err, user) {
                 if (err) return console.log(err)
                 if (!user) return res.json({success: false, message: "no user found with email."})
                 res.json({success: true, message: "user found with email.", user: user})
