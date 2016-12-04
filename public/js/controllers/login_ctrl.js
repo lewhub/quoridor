@@ -57,15 +57,18 @@
                             user_fac
                                 .show_with_email({email: response.email})
                                 .then(function(res) {
-                                    // vm.fb_user_info = new Object();
-                                    // vm.fb_user_info.email = response.email;
-                                    // vm.fb_user_info.password =  reponse.authResponse.accessToken;
-                                    // vm.fb_user_info.fb_user = true;
-                                    // user_fac
-                                    //     .create(vm.fb_user_info)
-                                    //     .then(function(res) {
-                                    //         console.log(res, "user created");
-                                    //     }, err_callback)
+                                    if (!res.data.success) {
+                                        vm.fb_user_info = new Object();
+                                        vm.fb_user_info.email = response.email;
+                                        vm.fb_user_info.password =  reponse.authResponse.accessToken;
+                                        vm.fb_user_info.fb_user = true;
+                                        user_fac
+                                            .create(vm.fb_user_info)
+                                            .then(function(res) {
+                                                console.log(res, "user created");
+                                            }, err_callback)
+                                    }
+                                  
                                     console.log(res, "found with email res.")
                                 }, err_callback)
                            
