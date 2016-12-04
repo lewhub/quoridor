@@ -92,14 +92,15 @@
 
 
 
-            vm.fb_logged_in = function(evt) {
-                console.log(evt, "event")
+            vm.fb_logged_in = function() {
                 if (window.FB) {
                 window.FB.getLoginStatus(function(response) {
                     console.log(response, "getting status.")
                     if (response.status === "connected") {
                         console.log("showing logout button");
-                        evt.target.style.display = "inline-block !important";
+                        var logout_btn = angular.element(document.querySelector(".fb_logout_btn"));
+                        console.log(logout_btn);
+                        logout_btn.css("display", "inline-block");
                         return true;
                     } else if (response.status === "not_authorized") {
                         return false;
