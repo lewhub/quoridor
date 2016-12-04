@@ -97,6 +97,7 @@
                 window.FB.getLoginStatus(function(response) {
                     console.log(response, "getting status.")
                     if (response.status === "connected") {
+                        console.log("showing logout button");
                         return true;
                     } else if (response.status === "not_authorized") {
                         return false;
