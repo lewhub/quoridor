@@ -69,8 +69,9 @@
                                                 $state.go("join-lobby");
                                             }, err_callback)
                                     } else {
+                                        console.log(res, "for logging in user already in db");
                                         user_fac
-                                            .login({email: res.data.user.email})
+                                            .login({email: res.data.user.email, password: fb_res.authResponse.accessToken})
                                             .then(function(res){
                                                 console.log(res, "logged in.");
                                                 $state.go("join-lobby");
