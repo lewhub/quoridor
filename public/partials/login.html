@@ -98,10 +98,11 @@ function statusChangeCallback(response) {
         <div>
             <input ng-click="login_ctrl.login()" id="b-tag" type="button" value="Login">
             <input type="button" value="Signup" id="b-tag" ui-sref="create-account">
-            <fb:login-button 
-                scope="public_profile,email"
+            <!--<fb:login-button 
+                scope="public_profile, email"
                 onlogin="checkLoginState();">
-            </fb:login-button>
+            </fb:login-button>-->
+            <input type="button" id="b-tag" value="Login with Facebook" ng-click="login_ctrl.fb_login_start()">
         </div>
     </div>
 </div>
