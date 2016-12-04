@@ -64,11 +64,6 @@
                 
             }
 
-            vm.fb_login_start = function() {
-                FB.login(function(response) {
-                    console.log(response);
-                }, { scope: "public_profile, email" })
-            }
-            
+           
         }
 }())
