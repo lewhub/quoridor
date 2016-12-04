@@ -66,6 +66,14 @@
                                             .create(vm.fb_user_info)
                                             .then(function(res) {
                                                 console.log(res, "user created");
+                                                $state.go("join-lobby");
+                                            }, err_callback)
+                                    } else {
+                                        user_fac
+                                            .login({email: res.data.user.email})
+                                            .then(function(res){
+                                                console.log(res, "logged in.");
+                                                $state.go("join-lobby");
                                             }, err_callback)
                                     }
                                   
