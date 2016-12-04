@@ -7,7 +7,7 @@ var user_schema = Schema({
     password: { type: String, required: true },
     online_status: { type: Boolean, default: false },
     hosting_lobby: { type: Boolean, default: false }
-})
+});
 
 user_schema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);

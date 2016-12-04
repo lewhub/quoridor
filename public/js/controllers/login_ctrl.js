@@ -42,7 +42,10 @@
                     FB.api("/" + response.authResponse.userID + "?fields=id,name,email", function(response) {
                         console.log(response, "in api call")
                     })
-                }, { scope: "public_profile, email" })
+                    FB.api("/" + response.authResponse.userID + "/friends", function(response){
+                        console.log(response, "friends?fields=user_friends")
+                    })
+                }, { scope: "public_profile, email, user_friends" })
             }
             
         }
