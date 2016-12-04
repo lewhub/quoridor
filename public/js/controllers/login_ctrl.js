@@ -93,6 +93,7 @@
 
 
             vm.fb_logged_in = function(evt) {
+                console.log(evt, "event")
                 if (window.FB) {
                 window.FB.getLoginStatus(function(response) {
                     console.log(response, "getting status.")
