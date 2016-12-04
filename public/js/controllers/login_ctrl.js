@@ -91,8 +91,8 @@
             }
 
   vm.fb_logged_in = function () {
-    if (FB) {
-        FB.getLoginStatus(function(response) {
+    if (window.FB) {
+        window.FB.getLoginStatus(function(response) {
         vm.statusChangeCallback(response)
     })
     } else {
