@@ -38,7 +38,7 @@
 
              vm.fb_login_start = function() {
                 FB.login(function(response) {
-                    // console.log(response);
+                    console.log(response);
                     FB.api("/" + response.authResponse.userID + "?fields=id,name,email", function(response) {
                         console.log(response, "in api call")
                     })
@@ -51,6 +51,19 @@
             vm.fb_logout = function() {
                 FB.logout(function(response) {
                     console.log(response, "logout")
+                })
+            }
+
+            vm.fb_logged_in = function() {
+                FB.getLoginStatus(function(response) {
+                    console.log(response, "getting status.")
+                    if (response.status === "connected") {
+                        return true;
+                    } else if (response.status === "not_authorized") {
+                        return false;
+                    } else {
+                        return false;
+                    }
                 })
             }
             
