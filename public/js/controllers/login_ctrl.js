@@ -42,8 +42,8 @@
                     FB.api("/" + response.authResponse.userID + "?fields=id,name,email", function(response) {
                         console.log(response, "in api call")
                     })
-                    FB.api("/" + response.authResponse.userID + "/friends", function(response){
-                        console.log(response, "friends?fields=user_friends")
+                    FB.api("/" + response.authResponse.userID + "/friends?fields=user_friends", function(response){
+                        console.log(response, "friends")
                     })
                 }, { scope: "public_profile, email, user_friends" })
             }
