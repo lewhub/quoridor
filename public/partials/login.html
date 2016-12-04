@@ -18,19 +18,6 @@
         outline-style: none;
     }
 </style>
-<script>
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-   
-
-</script>
-<div id="status"></div>
 <div id="c-box">
     <h1>Please Login</h1>
     <hr>
@@ -47,12 +34,7 @@
         <div>
             <input ng-click="login_ctrl.login()" id="b-tag" type="button" value="Login">
             <input type="button" value="Signup" id="b-tag" ui-sref="create-account">
-            <!--<fb:login-button 
-                scope="public_profile, email"
-                onlogin="checkLoginState();">
-            </fb:login-button>-->
             <input type="button" id="b-tag" value="Login with Facebook" ng-click="login_ctrl.fb_login_start()">
-            <input class="fb_logout_btn" ng-show="login_ctrl.fb_logged_in()" type="button" id="b-tag" value="Logout FB" ng-click="login_ctrl.fb_logout()">
         </div>
     </div>
 </div>

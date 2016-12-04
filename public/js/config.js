@@ -16,6 +16,9 @@
                             $window.localStorage["current-user-status"] = response.data.user.online_status;
                             $window.localStorage["user-email"] = response.data.user.email;
                             $window.localStorage["user-jwt-token"] = response.data.token;
+                            if (response.data.user.fb_user) {
+                                $window.localStorage["fb-user"] = true;
+                            }
                         }
                         return response;
                     }

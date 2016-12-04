@@ -7,6 +7,16 @@
         function GlobalController($window, $rootScope, $state) {
             var vm = this;
 
+             $window.fbAsyncInit = function() {
+                FB.init({
+                appId      : '1202135139865938',
+                xfbml      : true,
+                status: true,
+                cookie: true,
+                version    : 'v2.6'
+                });
+            };
+
             vm.parse_jwt = function(token) {
                 var base64Url = token.split(".")[1];
                 var base64 = base64Url.replace("-", "+").replace("_", "/");
@@ -28,6 +38,12 @@
                 $window.localStorage.removeItem("current-user-status");
                 $window.localStorage.removeItem("user-jwt-token");
                 $window.localStorage.removeItem("user-email");
+                if ($window.localStorage["fb-user"]) {
+                    FB.logout(function(response) {
+                        console.log(response, "logout")
+                    })
+                    $window.localStorage.removeItem("fb-user");
+                } 
                 $state.go("login");
             }
 
