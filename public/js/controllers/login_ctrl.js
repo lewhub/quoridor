@@ -55,7 +55,7 @@
                         console.log(response, "in api call")
                         if (fb_res.status === "connected") {
                             user_fac
-                                .show_with_email(response.email)
+                                .show_with_email({email: response.email})
                                 .then(function(res) {
                                     // vm.fb_user_info = new Object();
                                     // vm.fb_user_info.email = response.email;
