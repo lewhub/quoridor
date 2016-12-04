@@ -5,12 +5,23 @@
         // create signup
         // create socket connection to play a game where two users play becuase they are both logged in and their online_status fields are both set to true.
 
-        LoginController.$inject = ["user_fac", "$state"];
+        LoginController.$inject = ["user_fac", "$state", "$window"];
 
-        function LoginController(user_fac, $state) {
+        function LoginController(user_fac, $state, $window) {
             var vm = this;
             vm.title = "login view."
             vm.user = new Object();
+
+
+            $window.fbAsyncInit = function() {
+                FB.init({
+                appId      : '1202135139865938',
+                xfbml      : true,
+                status: true,
+                cookie: true,
+                version    : 'v2.6'
+                });
+            };
 
          
 
