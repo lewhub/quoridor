@@ -65,28 +65,19 @@
                 })
             }
 
-            vm.fb_logged_in = function() {
+            // vm.fb_logged_in = function() {
 
-                $window.fbAsyncInit = function() {
-                    FB.init({
-                    appId      : '1202135139865938',
-                    xfbml      : true,
-                    status: true,
-                    cookie: true,
-                    version    : 'v2.6'
-                    });
-                };
-                FB.getLoginStatus(function(response) {
-                    console.log(response, "getting status.")
-                    if (response.status === "connected") {
-                        return true;
-                    } else if (response.status === "not_authorized") {
-                        return false;
-                    } else {
-                        return false;
-                    }
-                })
-            }
+            //     FB.getLoginStatus(function(response) {
+            //         console.log(response, "getting status.")
+            //         if (response.status === "connected") {
+            //             return true;
+            //         } else if (response.status === "not_authorized") {
+            //             return false;
+            //         } else {
+            //             return false;
+            //         }
+            //     })
+            // }
             
         }
 }())
