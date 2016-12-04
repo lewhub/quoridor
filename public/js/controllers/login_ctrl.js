@@ -65,55 +65,48 @@
                 })
             }
 
-            vm.statusChangeCallback = function(response) {
-                console.log('statusChangeCallback');
-                console.log(response);
-                console.log(response.authResponse.userID)
-                // The response object is returned with a status field that lets the
-                // app know the current login status of the person.
-                // Full docs on the response object can be found in the documentation
-                // for FB.getLoginStatus().
-                if (response.status === 'connected') {
-                // Logged into your app and Facebook.
-                return true;
-                // testAPI(response.authResponse.userID);
-                } else if (response.status === 'not_authorized') {
-                // The person is logged into Facebook, but not your app.
-                document.getElementById('status').innerHTML = 'Please log ' +
-                    'into this app.';
-                } else {
-                // The person is not logged into Facebook, so we're not sure if
-                // they are logged into this app or not.
-                document.getElementById('status').innerHTML = 'Please log ' +
-                    'into Facebook.';
-                    return false;
-                }
-            }
-
-  vm.fb_logged_in = function () {
-    if (window.FB) {
-        window.FB.getLoginStatus(function(response) {
-        vm.statusChangeCallback(response)
-    })
-    } else {
-        return false
-    }
-    
-   }
-
-            // vm. = function() {
-
-            //     FB.getLoginStatus(function(response) {
-            //         console.log(response, "getting status.")
-            //         if (response.status === "connected") {
-            //             return true;
-            //         } else if (response.status === "not_authorized") {
-            //             return false;
-            //         } else {
-            //             return false;
-            //         }
-            //     })
+            // vm.statusChangeCallback = function(response) {
+            //     console.log('statusChangeCallback');
+            //     console.log(response);
+            //     console.log(response.authResponse.userID)
+            //     // The response object is returned with a status field that lets the
+            //     // app know the current login status of the person.
+            //     // Full docs on the response object can be found in the documentation
+            //     // for FB.getLoginStatus().
+            //     if (response.status === 'connected') {
+            //     // Logged into your app and Facebook.
+            //     return true;
+            //     // testAPI(response.authResponse.userID);
+            //     } else if (response.status === 'not_authorized') {
+            //     // The person is logged into Facebook, but not your app.
+            //     document.getElementById('status').innerHTML = 'Please log ' +
+            //         'into this app.';
+            //     } else {
+            //     // The person is not logged into Facebook, so we're not sure if
+            //     // they are logged into this app or not.
+            //     document.getElementById('status').innerHTML = 'Please log ' +
+            //         'into Facebook.';
+            //         return false;
+            //     }
             // }
+
+
+
+            vm.fb_logged_in = function() {
+                if (window.FB) {
+                window.FB.getLoginStatus(function(response) {
+                    console.log(response, "getting status.")
+                    if (response.status === "connected") {
+                        return true;
+                    } else if (response.status === "not_authorized") {
+                        return false;
+                    } else {
+                        return false;
+                    }
+                })
+                }
+              
+            }
             
         }
 }())
