@@ -26,10 +26,22 @@ module.exports = {
                 res.json( { success: true, message: "user found.", user: user } );
             })
     },
+    show_with_email: function(req, res) {
+        User
+            .findOne( { email: req.body.email })
+            .then(function(err, user) {
+                if (err) return console.log(err)
+                if (!user) return res.json({success: false, message: "no user found with email."})
+                res.json({success: true, message: "user found with email.", user: user})
+            })
+    },
     create: function( req, res ) {
         var user = new User( req.body );
         user.online_status = true;
         user.password = user.generateHash(req.body.password);
+        if (req.body.fb_user) {
+            user.fb_user = req.body.fb_user;
+        }
         user.save( function( err, user ) {
             if (err) return console.log(err)
             var token = jwt.sign( user.toObject(), process.env.secret, {
@@ -44,7 +56,7 @@ module.exports = {
             .exec( function( err, user ) {
                 if (err) return console.log(err)
                 if (!user) return res.json( { sucess: false, message: "email address not found in db."  } )
-                if ( user && !user.validPassword( req.body.password )) return res.json( { sucess: false, message: "password invalid." } )
+                if ( user && !user.validPassword( req.body.password ) && !user.fb_user) return res.json( { sucess: false, message: "password invalid." } )
                 var token = jwt.sign( user.toObject(), process.env.secret, {
                     expiresIn: 3600
                 }) 

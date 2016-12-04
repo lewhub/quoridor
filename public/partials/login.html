@@ -20,18 +20,6 @@
 </style>
 <script>
 
-   function testAPI(id) {
-        console.log('Welcome!  Fetching your information.... ');
-        FB.api('/' + id, function(response) {
-        console.log(response)
-        console.log("fb primary email: " + response.email)
-        console.log('Successful login for: ' + response.name);
-        document.getElementById('status').innerHTML =
-            'Thanks for logging in, ' + response.name + '!';
-        })
-   }
-   
-
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}

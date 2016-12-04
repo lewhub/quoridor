@@ -6,7 +6,8 @@ var user_schema = Schema({
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
     online_status: { type: Boolean, default: false },
-    hosting_lobby: { type: Boolean, default: false }
+    hosting_lobby: { type: Boolean, default: false },
+    fb_user: { type: Boolean, default: false }
 });
 
 user_schema.methods.generateHash = function(password) {

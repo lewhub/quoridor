@@ -18,7 +18,8 @@
                 create: create,
                 delete_user: delete_user,
                 change_status: change_status,
-                update_host: update_host
+                update_host: update_host,
+                show_with_email: show_with_email
             }
             return service;
 
@@ -51,6 +52,9 @@
             }
             function change_status(id) {
                 return $http.patch(api + id);
+            }
+            function show_with_email(data) {
+                return $http.post("https://quoridor-game.herokuapp.com/users/fb-call/", data);
             }
 
         }
