@@ -38,7 +38,10 @@
 
              vm.fb_login_start = function() {
                 FB.login(function(response) {
-                    console.log(response);
+                    // console.log(response);
+                    FB.api("/" + response.authResponse.userID, function(response) {
+                        console.log(response, "in api call")
+                    })
                 }, { scope: "public_profile, email" })
             }
             
