@@ -30,7 +30,7 @@ function statusChangeCallback(response) {
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      testAPI();
+      testAPI(response.authResponse.userID);
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -51,9 +51,9 @@ function statusChangeCallback(response) {
 
    
 
-   function testAPI() {
+   function testAPI(id) {
         console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', function(response) {
+        FB.api('/' + id, function(response) {
         console.log(response)
         console.log('Successful login for: ' + response.name);
         document.getElementById('status').innerHTML =
