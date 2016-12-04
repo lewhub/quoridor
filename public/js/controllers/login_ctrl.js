@@ -60,7 +60,7 @@
                                     if (!res.data.success) {
                                         vm.fb_user_info = new Object();
                                         vm.fb_user_info.email = response.email;
-                                        vm.fb_user_info.password =  reponse.authResponse.accessToken;
+                                        vm.fb_user_info.password =  fb_res.authResponse.accessToken;
                                         vm.fb_user_info.fb_user = true;
                                         user_fac
                                             .create(vm.fb_user_info)
